@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TreadingApplication<treading>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.darkthor.treading.TreadingApplication",
+            "projectName": "treading",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
