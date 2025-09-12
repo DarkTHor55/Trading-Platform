@@ -1,6 +1,5 @@
 package com.darkthor.treading.Configuration;
 
-import org.springframework.stereotype.Component;
 
 public class JwtConstant {
     public static final String SCERECT_KEY="fjhkefijhrejkofvijejdkiejfkdoijdcmdkowfjjfdejjhbwvlbwqvjlkjvd";

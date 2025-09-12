@@ -1,0 +1,50 @@
+package com.darkthor.treading.Configuration;
+
+import com.darkthor.treading.Services.CustomUserDetailsService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+@Component
+public class JwtProvider {
+    private static SecretKey key =Keys.hmacShaKeyFor(JwtConstant.SCERECT_KEY.getBytes());
+
+    public String genrateToken(Authentication auth){
+        Collection<?extends GrantedAuthority> authorities=auth.getAuthorities();
+        String roles=populateAuthorities(authorities);
+        String jwt= Jwts.builder()
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(new Date().getTime()+86400000))//24 hour
+                .claim("email",auth.getName())
+                .claim("authorities",roles)
+                .signWith(key)
+                .compact();
+        return jwt;
+    }
+    public String getEmailFromToken(String token){
+        token=token.substring(7);
+        Claims claims=Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getBody();
+        String email=String.valueOf(claims.get("email"));
+
+        return email;
+    }
+    private String populateAuthorities(Collection<?extends GrantedAuthority> authorities){
+        Set<String>auth=new HashSet<>();
+        for(GrantedAuthority ga:authorities){
+            auth.add(ga.getAuthority());
+        }
+        return String.join(",",auth);
+    }
+
+}
