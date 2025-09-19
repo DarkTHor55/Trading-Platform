@@ -1,4 +1,4 @@
-package com.darkthor.treading.Services;
+package com.darkthor.treading.Services.impl;
 
 import com.darkthor.treading.Models.User;
 import com.darkthor.treading.Repository.UserRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Override

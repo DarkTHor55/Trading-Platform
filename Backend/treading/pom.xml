@@ -84,7 +84,19 @@
     <artifactId>jjwt-jackson</artifactId>
     <version>0.11.5</version>
   </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Rohit Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/DarkTHor55/Trading-Platform</url>
+		</repository>
+	</distributionManagement>
+
 
 	<build>
 		<plugins>

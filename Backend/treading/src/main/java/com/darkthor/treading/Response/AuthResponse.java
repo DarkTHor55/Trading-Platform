@@ -15,6 +15,7 @@ public class AuthResponse {
     private String message;
     private Boolean isTwoFactorEnabled;
     private String session;
+    private String jwt;
 
 
 

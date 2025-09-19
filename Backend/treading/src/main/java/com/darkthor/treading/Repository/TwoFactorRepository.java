@@ -1,4 +1,9 @@
 package com.darkthor.treading.Repository;
 
-public class TwoFactorRepository {
+import com.darkthor.treading.Models.TwoFactorOTP;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TwoFactorRepository  extends JpaRepository<TwoFactorOTP,String> {
+    TwoFactorOTP findByUserId(Long id);
+
 }
